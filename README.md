@@ -5,8 +5,8 @@ TeleinfoHandler is a PHP API to handle EDF teleinfo data flow, and manage real t
 To see teleinfo documentation : http://norm.edf.fr/pdf/HN44S812emeeditionMars2007.pdf
 
 ###How it works
-To use the API you need to install pthreads PHP's driver (http://php.net/manual/en/pthreads.installation.php). Then you can create your observer class, TeleinfoHandlerObserverInterface implementation is mandatory for teleinfo handler observering.
-TeleinfoHandler object reads the teleinfo buffer, and on each events (only RECEIVED for this version), creates a new thread and notify observers, giving teleinfo packet and event type. Then you will be able to follow up with your own code and the packet received. Packet is transmit with TeleinfoPacket object, provinding the packet string and some methods (see TeleinfoPacket.php class).
+TeleinfoHandler object reads the teleinfo buffer giving in argument, and on each events (only RECEIVED for this version), creates a new thread and notify observers, giving teleinfo packet and event type. Then you will be able to follow up with your own code and the packet received. Packet is transmit with TeleinfoPacket object, provinding the packet string and some methods (see TeleinfoPacket.php class).
+To use the API you need to install pthreads PHP's driver (http://php.net/manual/en/book.pthreads.php). Then you can create your observer class, TeleinfoHandlerObserverInterface implementation is mandatory for teleinfo handler observering.
 
 observer sample:
 
@@ -108,10 +108,14 @@ include_once 'TeleinfoHandlerObserver.php';
 
 use TeleinfoHandler\TeleinfoHandler as TeleinfoHandler;
 
+//create the observer
 $obs = new TeleinfoHandlerObserver();
 
+//create the handler, providing teleinfo dataflow buffer path
 $handler = new TeleinfoHandler('/dev/ttyAMA0');
 $handler->addObserver($obs);
+
+//start reading
 $handler->run();
 ```
 
