@@ -3,7 +3,7 @@
 namespace TeleinfoHandler;
 
 include_once 'TeleinfoHandlerEventsInterface.php';
-include_once 'TeleinfoHandlerObserverInterface.php';
+include_once 'TeleinfoHandlerObserver.php';
 include_once 'TeleinfoHandlerObserverThreadLauncher.php';
 include_once 'TeleinfoPacket.php';
 
@@ -59,13 +59,13 @@ class TeleinfoHandler implements TeleinfoHandlerEventsInterface {
      * Add an observer.
      * 
      * Add an observer that will be called on each teleinfo event. Observer must 
-     * implement TeleinfoHandlerObserverInterface.
+     * extends TeleinfoHandlerObserver.
      *
-     * @param TeleinfoHandlerObserverInterface $observer observer to add
+     * @param TeleinfoHandlerObserver $observer observer to add
      *
      * @access public
      */
-    public function addObserver(TeleinfoHandlerObserverInterface $observer) {
+    public function addObserver(TeleinfoHandlerObserver $observer) {
 
         $this->_observers [] = $observer;
     }

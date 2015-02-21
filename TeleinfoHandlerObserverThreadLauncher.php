@@ -2,7 +2,7 @@
 
 namespace TeleinfoHandler;
 
-include_once 'TeleinfoHandlerObserverInterface.php';
+include_once 'TeleinfoHandlerObserver.php';
 
 /**
  * Notify teleinfo handler observer
@@ -24,11 +24,11 @@ class TeleinfoHandlerObserverThreadLauncher extends \Thread {
     /**
      * Constructor.
      *
-     * @param TeleinfoHandlerObserverInterface $observer observer to thread
+     * @param TeleinfoHandlerObserver $observer observer to thread
      *
      * @access public
      */
-    public function __construct(TeleinfoHandlerObserverInterface $observer) {
+    public function __construct(TeleinfoHandlerObserver $observer) {
 
         $this->_observer = $observer;
     }
